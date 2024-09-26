@@ -27,10 +27,10 @@
                 </div>
                 <div class="pb-4 px-5">
                     <div class="mt-5 user-data row">
-                        <p class="col-6"><span>Nome<small>:</small></span> {{$user->name}}</p>
-                        <p class="col-6"><span>Conome<small>:</small></span> {{$user->surname}}</p>
-                        <p class="col-6"><span>Data di Nascita<small>:</small></span> {{ \Carbon\Carbon::parse($user->date_of_birth)->format('d/m/Y') }}</p>
-                        <p class="col-6"><span>Email<small>:</small></span> {{$user->email}}</p>
+                        <p class="col-sm-12 col-md-6"><span>Nome<small>:</small></span> {{$user->name}}</p>
+                        <p class="col-sm-12 col-md-6"><span>Conome<small>:</small></span> {{$user->surname}}</p>
+                        <p class="col-sm-12 col-md-6"><span>Data di Nascita<small>:</small></span> {{ \Carbon\Carbon::parse($user->date_of_birth)->format('d/m/Y') }}</p>
+                        <p class="col-sm-12 col-md-6"><span>Email<small>:</small></span> {{$user->email}}</p>
                     </div>
                     <hr>
                     <div class="my-4 row">
@@ -41,7 +41,7 @@
                             <small class="color-text3">0</small>
                             @endif
                         @forelse ( $homes as $home )
-                        <p class="col-6">
+                        <p class="col-sm-12 col-xl-6">
                             <span><i class="fas fa-circle"></i><small></small></span> {{$home->title}} 
                             <span><i class="fas fa-location-arrow ms-4 me-2"></i></span>
                              {{$home->address}}

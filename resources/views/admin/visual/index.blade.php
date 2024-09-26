@@ -15,9 +15,15 @@
             </div>
             <div class="pb-4 px-5">
                 <div class="row p-5">
-                    <div class="chart-container d-flex mt-5 w-50" data-visitors='@php echo json_encode($visitors); @endphp'>
-                        <canvas id="chart" class="me-4"></canvas>
-                        <canvas id="chart-apartments" class="ms-4"></canvas>
+                    <div class="chart-container d-flex flex-wrap mt-5" data-visitors='@php echo json_encode($visitors); @endphp'>
+                        <!-- Primera columna para el gráfico -->
+                        <div class="col-12 col-xl-6 mb-5">
+                            <canvas id="chart" class="w-100"></canvas> <!-- canvas a 100% del ancho disponible -->
+                        </div>
+                        <!-- Segunda columna para el otro gráfico -->
+                        <div class="col-12 col-xl-6 mb-5">
+                            <canvas id="chart-apartments" class="w-100"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>           
