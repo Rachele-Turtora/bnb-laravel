@@ -23,7 +23,7 @@ class StoreMessageRequest extends FormRequest
     {
         return [
             'name' => 'required|min:5|max:50|string',
-            'email' => 'required|min:10|max:250|string',
+            'email' => 'required|min:10|max:250|email',
             'content' => 'required|min:10|max:1000|string',
         ];
     }
@@ -34,12 +34,16 @@ class StoreMessageRequest extends FormRequest
             'name.required' => 'Il nome è obbligatorio',
             'name.min' => 'Il nome deve contenere almeno 5 caratteri',
             'name.max' => 'Il nome può contenere al massimo 50 caratteri',
-            'email.string' => 'L\'email deve essere una stringa',
-            'email.min' => 'L\'email deve contenere almeno 5 caratteri',
+
+            'email.required' => 'L\'email è obbligatoria',
+            'email.min' => 'L\'email deve contenere almeno 10 caratteri',
             'email.max' => 'L\'email può contenere al massimo 250 caratteri',
-            'content.min' => 'La descrizione deve contenere almeno 10 caratteri',
-            'content.max' => 'La descrizione può contenere al massimo 1000 caratteri',
-            'content.string' => 'La descrizione deve essere una stringa',
+            'email.email' => 'L\'email deve essere un indirizzo email valido',
+
+            'content.required' => 'Il messaggio è obbligatorio',
+            'content.min' => 'Il messaggio deve contenere almeno 10 caratteri',
+            'content.max' => 'Il messaggio può contenere al massimo 1000 caratteri',
+            'content.string' => 'Il messaggio deve essere una stringa valida',
         ];
     }
 }

@@ -104,46 +104,22 @@ class HomeController extends Controller
 
     public function storeMessage(StoreMessageRequest $request, $slug)
     {
-        try {
-            //? trova l'appartamento associato allo slug:
-            $home = Home::where('slug', $slug)->first();
+       
+        $data = $request->validated();
 
-            if (!$home) {
-                return response()->json(['status' => 'failed', 'message' => 'Appartamento non trovato'], 404);
-            }
+        $apartment = Home::where('slug', $slug)->first();
 
-            $data = $request->validated();
-
-            $message = new Message();
-
-            $message->home_id = $home->id;
-
-            $message->name = $data['name'];
-            $message->email = $data['email'];
-            $message->content = $data['content'];
-
-            $message->save();
-
-            //? invio email:
-            Mail::to($data['email'])->send(new NewMessage($message));
-
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Messaggio inviato con successo!'
-            ], 201);
-        } catch (ValidationException $e) {
-            //? erori di validazione:
-            return response()->json([
-                'status' => 'failed',
-                'errors' => $e->errors(),
-            ], 422);
-        } catch (Exception $e) {
-            //? gestione altri errori:
-            return response()->json([
-                'status' => 'failed',
-                'message' => 'Si è verificato un errore durante l\'invio del messaggio.',
-                'error' => $e->getMessage()
-            ], 500);
+        if (!$apartment) {
+            return response()->json(['error' => 'Apartamento no encontrado.'], 404);
         }
+
+        $message = new Message();
+        $message->name = $data['name'];
+        $message->email = $data['email'];
+        $message->content = $data['content'];
+        $message->home_id = $apartment->id;
+        $message->save();
+
+        return response()->json(['message' => 'Mensaje enviado con éxito.'], 201);
     }
 }
